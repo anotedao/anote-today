@@ -9,7 +9,7 @@
       "tsc:w": "tsc -w",
       "start": "static-i18n -l en -i hr -i en ./src/ && cp src/custom.css i18n/ && cp src/app.ts i18n/ && cp src/img/* i18n/img/ && cp -R src/locales/ dist/ && concurrently \"npm run tsc:w\" \"parcel ./i18n/index.html\" ",
       "predeploy": "rm -rf dist && cp -R src dist && static-i18n -l en -i en -o ./dist ./src/ && parcel build ./dist/index.html --public-url ./ && cp CNAME dist/ && cp -R src/locales/ dist/",
-      "deploy": "gh-pages -b main -d dist -r git@github.com:anoncms/anote.today.git"
+      "deploy": "gh-pages -b master -d dist -r git@github.com:anoncms/anote.today.git"
     },
     "keywords": [],
     "author": "",

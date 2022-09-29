@@ -1,0 +1,130 @@
+{
+    "lang": "hr",
+    "html": {
+      "title": "Kriptokuna Novčanik - kriptovaluta u rukama običnih ljudi",
+      "description": "Kriptokuna je stabilna kriptovaluta koja ima vrijednost 1:1 s kunom što ju u stvarnosti čini decentraliziranim bankovnim računom pod kontrolom njenih korisnika.",
+      "url": "https://novcanik.kriptokuna.com",
+      "logoUrl": "./img/logo-ahrk.png",
+      "fbImg": "https://www.kriptokuna.com/static/img/fb.png?v=1.0.0"
+    },
+    "login": {
+      "password": "Unesi lozinku"
+    },
+    "newAccount": {
+      "newTitle": "Novi Kriptokuna račun",
+      "register": "Registriraj se",
+      "importTitle": "Postojeći Kriptokuna račun",
+      "seed": "Seed riječi",
+      "import": "Import računa",
+      "new": "Novi"
+    },
+    "password": "Lozinka",
+    "repeatPassword": "Ponovi lozinku",
+    "main": {
+      "helpUrl": "https://t.me/Kriptokuna"
+    },
+    "home": {
+      "seedWarning": "Ne zaboravite spremiti seed riječi svog računa. Možete ih pronaći u postavkama nakon što upišete lozinku. <strong><u>Sami odgovarate za svoj račun.</u></strong>",
+      "tab1": "Kriptokuna",
+      "tab2": "Mining",
+      "tab3": "Waves",
+      "tab4": "Bankar",
+      "tab5": "Mjenjačnica",
+      "balance": "Stanje računa",
+      "earnings": "Akumulirana kamata",
+      "currency": "kn",
+      "collectEarnings": "Povuci kamatu",
+      "feeMessage": "Naknada za povlačenje iznosi 1 kn.",
+      "collectSuccess": "Povlačenje je uspješno izvršeno.",
+      "aintTitle": "AINT Tokeni",
+      "aintCurrency": "AINTa",
+      "aintEarnings": "Akumulirana AINT zarada",
+      "aintCollectEarnings": "Povuci",
+      "balanceWaves": "Stanje WAVESa",
+      "balanceAnotes": "Stanje Anota",
+      "mineMessage": "Anote se mogu jednostavno rudariti koristeći Telegram messenger. Više o rudarenju pročitajte <a href=\"https://www.anonutopia.com/beginner\" target=\"_blank\">ovdje</a>."
+    },
+    "receive": {
+      "account": "Račun",
+      "message": "Račun je kopiran.",
+      "qr": "QR Kod"
+    },
+    "send": {
+      "feeMessage": "Cijena transakcije je <span id=\"feePrice\">0.050000</span> <span id=\"feeAsset\">AHRK</span>, neovisno o iznosu.",
+      "amount": "Iznos",
+      "amount2": "Iznos kuna",
+      "address": "Addresa / broj računa",
+      "sendMessage": "Iznos je uspješno poslan.",
+      "sendButton": "Pošalji",
+      "currency": "Valuta",
+      "firstCurrencyId": "Gvs59WEEXVAQiRZwisUosG7fVNr8vnzS8mjkgqotrERT",
+      "firstCurrencyName": "Kriptokuna",
+      "secondCurrencyId": "Az4MsPQZn9RJm8adcya5RuztQ49rMGUW99Ebj56triWr",
+      "secondCurrencyName": "AnonEuro"
+    },
+    "exchange": {
+      "from": "Iz valute",
+      "to": "U valutu",
+      "exchange": "Zamijeni",
+      "feeMessageExchange": "Cijena transakcije je <span id=\"feePriceExchange\">0.050000</span> <span id=\"feeAssetExchange\">AHRK</span>, neovisno o iznosu.",
+      "exchangeMessage": "Zamjena je uspješno obavljena. Iznos će se uskoro pokazati na vašem računu."
+    },
+    "addressBook": {
+      "message": "Adresar je u izradi i bit će dostupan u slijedećoj verziji."
+    },
+    "settings": {
+      "seedWords": "Seed riječi za backup",
+      "seedWordsCopied": "Seed riječi su kopirane.",
+      "show": "Prikaži",
+      "copy": "Kopiraj",
+      "newPassword": "Nova lozinka",
+      "repeatNewPassword": "Ponovi novu lozinku",
+      "changePassword": "Promijeni lozinku",
+      "logout": "Odlogiraj se",
+      "deleteAccount": "Obriši račun",
+      "passwordChange": "Promjena lozinke",
+      "connectTelegram": "Spajanje Telegrama",
+      "logoutTitle": "Odlogiravanje",
+      "referralTitle": "Pozovi druge",
+      "referralLink": "Link za pozivanje",
+      "rCopyMessage": "Link je kopiran."
+    },
+    "modals": {
+      "title1": "Unesi lozinku",
+      "cancel": "Odustani",
+      "continue": "Nastavi",
+      "title2": "Unesi staru lozinku"
+    },
+    "app": {
+      "lang": "hr",
+      "error": "Dogodila se greška. Pokušajte ponovo.",
+      "collectEarnings": {
+        "notEnough": "Nemate dovoljno kuna za povlačenje kamate."
+      },
+      "login": {
+        "wrongPass": "Lozinka je pogrešna, pokušajte ponovo.",
+        "passRequired": "Lozinka je obavezna."
+      },
+      "qr": {
+        "message": "Skeniranje QR koda bit će dostupno u slijedećoj verziji."
+      },
+      "changePass": {
+        "success": "Lozinka je uspješno promijenjena.",
+        "oldRequired": "Stara lozinka je obavezna."
+      },
+      "send": {
+        "notEnough": "Nemate dovoljno novca na računu. Naknada iznosi 5 lipa ili 0.001 WAVES.",
+        "bothRequired": "Oba polja su obavezna"
+      },
+      "exchange": {
+        "currenciesSame": "Valute ne mogu biti iste.",
+        "amountRequired": "Iznos je obavezan."
+      },
+      "import": {
+        "seedRequired": "Seed riječi su obavezne."
+      },
+      "bothPassRequired": "Oba polja lozinke su obavezna.",
+      "passwordsDontMatch": "Prva i druga lozinka se ne podudaraju."
+    },
+    "underConstruction": "Ova mogućnost je u izradi i bit će dostupna u slijedećoj verziji."
+  }

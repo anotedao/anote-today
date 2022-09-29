@@ -1,0 +1,142 @@
+{
+  "lang": "en",
+  "html": {
+    "title": "Anote Wallet",
+    "description": "Anote crypto currency can be mined, sent, received, exchanged or sold and used right from the start to purchase ads on our Telegram ad channel - AnonShout.",
+    "url": "https://anote.digital",
+    "logoUrl": "./img/logo.png",
+    "fbImg": "https://www.anonutopia.com/static/img/fb.png?v=1.0.0"
+  },
+  "login": {
+    "password": "Enter password"
+  },
+  "newAccount": {
+    "newTitle": "New Anote Account",
+    "register": "Register",
+    "importTitle": "Import Anote account",
+    "seed": "Seed words",
+    "import": "Import account",
+    "new": "New account"
+  },
+  "password": "Password",
+  "repeatPassword": "Repeat Password",
+  "main": {
+    "helpUrl": "https://t.me/anotedigital"
+  },
+  "home": {
+    "seedWarning": "Save your seed words for backup purposes. You can find them in settings. <strong><u>You are responsible for your account.</u></strong>",
+    "tab1": "AnonEuro",
+    "tab2": "Mining",
+    "tab3": "ANOTE",
+    "tab4": "AINT",
+    "tab5": "Exchange",
+    "balance": "Balance",
+    "earnings": "Accumulated earnings",
+    "currency": "AEUR",
+    "collectEarnings": "Withdraw",
+    "feeMessage": "Withdrawal fee is 10 ANOTEs",
+    "collectSuccess": "Withdrawal was successful.",
+    "aintTitle": "AINT Tokens",
+    "aintCurrency": "AINTs",
+    "aintEarnings": "Accumulated AINT earnings",
+    "aintCollectEarnings": "Withdraw",
+    "balanceWaves": "Anote Balance",
+    "balanceAINTs": "AINT Balance",
+    "mineMessage": "Anote can be mined in a simple way using Telegram messenger. You can read more about mining <a href=\"https://www.anonutopia.com/beginner\" target=\"_blank\">here</a>."
+  },
+  "receive": {
+    "account": "Account Address",
+    "message": "Account address is copied.",
+    "qr": "QR Code"
+  },
+  "send": {
+    "feeMessage": "Transaction fee is <span id=\"feePrice\">0.001</span> <span id=\"feeAsset\">Anotes</span> no matter the amount.",
+    "amount": "Amount",
+    "amount2": "Amount ANOTEs",
+    "address": "Address",
+    "sendMessage": "The amount was sent successfully.",
+    "sendButton": "Send",
+    "currency": "Currency",
+    "firstCurrencyId": "Az4MsPQZn9RJm8adcya5RuztQ49rMGUW99Ebj56triWr",
+    "firstCurrencyName": "AnonEuro",
+    "secondCurrencyId": "Gvs59WEEXVAQiRZwisUosG7fVNr8vnzS8mjkgqotrERT",
+    "secondCurrencyName": "Kriptokuna"
+  },
+  "exchange": {
+    "from": "From Currency",
+    "to": "To Currency",
+    "exchange": "Exchange",
+    "exchangeMessage": "Exchange was successful. The amount will show soon on your account."
+  },
+  "bank": {
+    "tab1": "Mining",
+    "tab2": "Leasing",
+    "tab3": "Staking",
+    "message": "This section is under the development and it will be available in the next version.",
+    "minedAnotes": "Mine Anotes",
+    "mine": "Mine Anotes",
+    "captchacode": "Captcha Code",
+    "miningcode": "Mining Code",
+    "miningCycle": "Mining cycle is currently running.",
+    "telegram": "Connect With Telegram"
+  },
+  "settings": {
+    "seedWords": "Seed Words for Backup",
+    "seedWordsCopied": "Seed words are copied.",
+    "show": "Show Words",
+    "copy": "Copy Words",
+    "newPassword": "New Password",
+    "repeatNewPassword": "Repeat New Password",
+    "changePassword": "Change Password",
+    "logout": "Sign Out",
+    "deleteAccount": "Delete Account",
+    "passwordChange": "Change Password",
+    "connectTelegram": "Connect Telegram",
+    "logoutTitle": "Logging Out",
+    "referralTitle": "Referral Program",
+    "referralLink": "Invitation link",
+    "rCopyMessage": "Link is copied."
+  },
+  "modals": {
+    "title1": "Enter Password",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "title2": "Enter Old Password"
+  },
+  "app": {
+    "lang": "en",
+    "error": "An error happened. Please try again.",
+    "collectEarnings": {
+      "notEnough": "You don't have enough to withdraw."
+    },
+    "login": {
+      "wrongPass": "Wrong password, please try again.",
+      "passRequired": "Password is required."
+    },
+    "qr": {
+      "message": "Scanning QR code will be available in the next version."
+    },
+    "changePass": {
+      "success": "Password changed successfully.",
+      "oldRequired": "Old password is required."
+    },
+    "send": {
+      "notEnough": "You don't have enough on your account, the fee is 0.001 Anotes.",
+      "bothRequired": "Both fields are required."
+    },
+    "exchange": {
+      "currenciesSame": "Currencies can't be same.",
+      "amountRequired": "Amount is required."
+    },
+    "import": {
+      "seedRequired": "Seed words are required."
+    },
+    "bank": {
+      "wrongCaptcha": "Captcha code is wrong, please try again.",
+      "wrongCode": "Mining code is wrong, please try again."
+    },
+    "bothPassRequired": "Both passwords are required.",
+    "passwordsDontMatch": "Passwords don't match."
+  },
+  "underConstruction": "This feature is under construction and it will be available in the next version."
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title data-t>html.title</title>
+   <meta name="description" data-attr-t data-attr-t-interpolate content-t="{{html.description}}">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="icon" type="image/png" href="./img/favicon.png" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="./custom.css">
+   <meta property="og:url" data-attr-t data-attr-t-interpolate content-t="{{html.url}}"/>
+   <meta property="og:type"               content="article" />
+   <meta property="og:title" data-attr-t data-attr-t-interpolate content-t="{{html.title}}"/>
+   <meta property="og:description" data-attr-t data-attr-t-interpolate content-t="{{html.description}}"/>
+   <meta property="og:image" data-attr-t data-attr-t-interpolate content-t="{{html.fbImg}}" />
+</head>
+
+<body>
+
+   <!-- Loading Page -->
+   <div class="container" style="padding: 0 30px;" id="page-loading">
+      <div class="row">
+         <div class="col-0 col-lg-3"></div>
+         <div class="col-12 col-lg-6 text-center">
+            <div class="bg-light p-md-5 py-5 border shadow-lg my-5">
+               <div class="row">
+                  <div class="col"></div>
+                  <div class="col-10">
+                     <img src-t="{{html.logoUrl}}" data-attr-t data-attr-t-interpolate alt-t="{{html.title}}" class="img-fluid" style="max-height: 70px;">
+                  </div>
+                  <div class="col"></div>
+               </div>
+               <div class="row mt-4">
+                  <div class="d-flex justify-content-center">
+                     <div class="spinner-border text-danger" role="status">
+                       <span class="visually-hidden">Loading...</span>
+                     </div>
+                   </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-0 col-lg-3"></div>
+      </div>
+   </div>
+
+   <!-- Login Page -->
+   <div class="container" style="padding: 0 30px; display: none;" id="page-login">
+      <div class="row">
+         <div class="col-0 col-lg-3"></div>
+         <div class="col-12 col-lg-6">
+            <div class="bg-light p-md-5 p-5 border shadow-lg my-5">
+               <div class="row">
+                  <div class="col-12">
+                     <img src-t="{{html.logoUrl}}" data-attr-t data-attr-t-interpolate alt-t="{{html.title}}" class="img-fluid" style="max-height: 70px;">
+                  </div>
+               </div>
+               <div class="row mt-4">
+                  <form action="javascript:void(0)" id="loginForm">
+                     <div class="mb-4">
+                        <label class="form-label fw-bold" data-t>login.password</label>
+                        <input type="password" class="form-control" id="password1">
+                        <div id="pMessage3" class="form-text text-danger mt-4" style="display: none;"></div>
+                     </div>
+                     <button type="button" class="btn btn-success btn-lg" id="buttonLogin">
+                        <i class="bi bi-arrow-right-circle-fill"></i>&nbsp;&nbsp;Login
+                     </button>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="col-0 col-lg-3"></div>
+      </div>
+   </div>
+
+   <!-- New Account Page -->
+   <div class="container" style="padding: 0 30px; display: none;" id="page-newaccount">
+      <div class="row">
+         <div class="col-0 col-lg-3"></div>
+         <div class="col-12 col-lg-6">
+            <div class="bg-light p-md-5 p-3 border shadow-lg my-5">
+               <div class="row">
+                  <div class="col-12">
+                     <img src-t="{{html.logoUrl}}" data-attr-t data-attr-t-interpolate alt-t="{{html.title}}" class="img-fluid" style="max-height: 70px;">
+                  </div>
+               </div>
+               <div class="row mt-3" id="newAccount">
+                  <h4 class="my-3" data-t><u>newAccount.newTitle</u></h4>
+                  <form action="javascript:void(0)">
+                     <div class="mb-3">
+                        <label class="form-label fw-bold" data-t>password</label>
+                        <input type="password" class="form-control" id="password2">
+                      </div>
+                     <div class="mb-4">
+                       <label class="form-label fw-bold" data-t>repeatPassword</label>
+                       <input type="password" class="form-control" id="password3">
+                       <div id="pMessage1" class="form-text text-danger mt-4" style="display: none;"></div>
+                     </div>
+                     <div class="justify-content-between d-flex">
+                        <button class="btn btn-success" id="buttonRegister">
+                           <i class="bi bi-person-plus-fill"></i>&nbsp;<span data-t>newAccount.register</span>
+                        </button>
+                        <button class="btn btn-secondary" id="buttonShowExisting">
+                           <i class="bi bi-person-check-fill"></i>&nbsp;Import
+                        </button>
+                     </div>
+                  </form>
+               </div>
+               <div class="row mt-3" id="existingAccount" style="display: none;">
+                  <h4 class="my-3"><u data-t>newAccount.importTitle</u></h4>
+                  <form action="javascript:void(0)">
+                     <div class="mb-3">
+                        <label class="form-label fw-bold" data-t>password</label>
+                        <input type="password" class="form-control" id="password4">
+                      </div>
+                     <div class="mb-3">
+                       <label class="form-label fw-bold" data-t>repeatPassword</label>
+                       <input type="password" class="form-control" id="password5">
+                     </div>
+                     <div class="mb-4">
+                        <label class="form-label fw-bold" data-t>newAccount.seed</label>
+                        <textarea class="form-control" rows="3" id="seedWords1"></textarea>
+                        <div id="pMessage2" class="form-text text-danger mt-4" style="display: none;"></div>
+                      </div>
+                      <div class="justify-content-between d-flex">
+                        <button class="btn btn-success" id="buttonImport">
+                           <i class="bi bi-person-check-fill"></i>&nbsp;<span data-t>newAccount.import</span>
+                        </button>
+                        <button class="btn btn-secondary" id="buttonNewAccount">
+                           <i class="bi bi-person-plus-fill"></i>&nbsp;<span data-t>newAccount.new</span>
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="col-0 col-lg-3"></div>
+      </div>
+   </div>
+
+   <!-- Main Page -->
+   <div class="container" style="padding: 0 30px; display: none;" id="page-main">
+
+        <!-- Header -->
+        <div class="row py-5">
+            <div class="col-7 g-0">
+                <img src-t="{{html.logoUrl}}" data-attr-t data-attr-t-interpolate alt-t="{{html.title}}" class="img-fluid" style="max-height: 70px;">
+            </div>
+            <div class="col-2 col-sm-2 col-lg-3"></div>
+            <div class="col-1 text-end fs-1 mt-auto" style="margin-bottom: -5px;">
+                <a data-attr-t data-attr-t-interpolate href-t="{{main.helpUrl}}" target="_blank"><i class="bi bi-patch-question text-dark"></i></a>
+            </div>
+            <div class="col-2 col-sm-2 col-lg-1 text-end fs-1 mt-auto" style="margin-bottom: -5px;">
+                <a href="javascript:void(0)" id="settings"><i class="bi bi-gear text-dark"></i></a>
+            </div>
+        </div>
+
+        <!-- Screen Home -->
+        <div id="screen-home">
+            Hello World
+        </div>
+
+   </div>
+
+   <input type="hidden" id="lang" data-attr-t data-attr-t-interpolate value-t="{{lang}}">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+   <script src="./app.ts"></script>
+
+</body>
+
+</html>
