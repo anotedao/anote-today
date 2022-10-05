@@ -409,13 +409,14 @@ class Wallet {
     }
 
     populateBids() {
+        $("#bidList").html("");
         $.getJSON("https://nodes.anote.digital/addresses/data/3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW", function( data ) {
             if (data.length == 0) {
                 var el = '<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto">No Bids Today</div></li>';
                 $("#bidList").html(el);
             } else {
                 data = data.sort(function(a, b) {
-                    return parseFloat(a.value) - parseFloat(b.value);
+                    return parseFloat(b.value) - parseFloat(a.value);
                 });
                 data.forEach(element => {
                     var anotes = element.value / 100000000;
@@ -428,15 +429,49 @@ class Wallet {
     }
 
     async bid() {
-        // const [tx] = await this.signer.invoke({
-        //     dApp: "3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW",
-        //     call: { function: "bid", args: [] },
-        //     fee: 500000,
-        //     payment: [{
-        //         assetId: 'WAVES',
-        //         amount: 500000,
-        //     }],
-        //  }).broadcast();
+        var amount = $("#bidAmount").val();
+
+        if (amount?.toString().length == 0 || amount == undefined) {
+            $("#pMessage11").html(t.exchange.amountRequired);
+            $("#pMessage11").fadeIn(function(){
+                setTimeout(function(){
+                    $("#pMessage11").fadeOut();
+                }, 2000);
+            });
+            navigator.vibrate(500);
+        } else {
+            try {
+                var amountFlt = parseFloat(amount?.toString());
+                var amountInt = amountFlt * 100000000;
+                const [tx] = await this.signer.invoke({
+                    dApp: "3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW",
+                    call: { function: "bid", args: [] },
+                    fee: 500000,
+                    payment: [{
+                        assetId: 'WAVES',
+                        amount: amountInt,
+                    }],
+                }).broadcast();
+
+                setTimeout(wallet.populateBids, 10000);
+
+                $("#pMessage10").fadeIn(function(){
+                    setTimeout(function(){
+                        $("#pMessage10").fadeOut();
+                    }, 500);
+                });
+            } catch (e: any) {
+                $("#pMessage11").html(t.error);
+                $("#pMessage11").fadeIn(function(){
+                    setTimeout(function(){
+                        $("#pMessage11").fadeOut();
+                    }, 2000);
+                });
+                console.log(e.message)
+                navigator.vibrate(500);
+            }
+        }
+
     }
 
     async register() { 
@@ -927,6 +962,10 @@ $("#buttonChangePass").on( "click", function() {
 
 $("#saveAdButton").on( "click", function() {
     wallet.saveAd();
+});
+
+$("#bidButton").on( "click", function() {
+    wallet.bid();
 });
 
 // $("#sendCurrency").on( "change", function() {
