@@ -9,7 +9,6 @@ import copy from 'copy-to-clipboard';
 
 class Wallet { 
     private address;
-    private referral;
     private seed;
     private sessionSeed;
     private user;
@@ -28,7 +27,6 @@ class Wallet {
 
     constructor() { 
         this.address = Cookies.get("address");
-        this.referral = Cookies.get("referral");
         this.seed = Cookies.get("seed");
         this.sessionSeed = Cookies.get("sessionSeed");
         this.seedSaved = Cookies.get("seedSaved");
@@ -73,39 +71,6 @@ class Wallet {
             $("#captcha-img").attr("onclick", "this.src=('" + data.image + "?reload='+(new Date()).getTime())");
             wallet.captchaId = data.id;
         });
-    }
-
-    initMiningSection() {
-        this.getCaptcha();
-
-        $.getJSON("https://nodes.anote.digital/node/status", function(data) {
-            var currentHeight = data.blockchainHeight;
-            $.getJSON("https://nodes.anote.digital/addresses/data/3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW?key=" + wallet.address, function(data) {
-                if (data.length == 0) {
-                    $("#miningPanel1").hide();
-                    $("#miningPanel2").hide();
-                    $("#miningPanel3").show();
-                } else {
-                    $.getJSON("https://nodes.anote.digital/addresses/data/3ANzidsKXn9a1s9FEbWA19hnMgV9zZ2RB9a?key=" + wallet.address, function(data) {
-                        if (data.length > 0) {
-                            var miningHeight = data[0].value;
-                            if (currentHeight - miningHeight <= 1440) {
-                                $("#miningPanel1").hide();
-                                $("#miningPanel2").show();
-                            } else {
-                                $("#miningPanel2").hide();
-                                $("#miningPanel1").show();
-                            }
-                        } else {
-                            $("#miningPanel2").hide();
-                            $("#miningPanel1").show();
-                        }
-                    });
-                }
-            });
-        });
-
-        $("#buttonTelegram").attr("href", "https://t.me/AnoteRobot?start=" + this.address);
     }
 
     async login() {
@@ -615,7 +580,6 @@ class Wallet {
     }
 
     private async populateData() {
-        $("#referralLink").val("https://anote.one/mine?r=" + this.address);
         $("#address").val(this.address);
         var historyHref = "https://anote.live/address/" + this.address + "/tx";
         $("#history").attr("href", historyHref);
@@ -634,44 +598,9 @@ class Wallet {
             } catch (e) {}
         }, 30000);
 
-        await wallet.initMiningSection();
-
-        await wallet.checkReferral();
-
         await wallet.populateAd();
 
         await wallet.populateBids();
-
-        setInterval(async function(){
-            try {
-                await wallet.initMiningSection();
-            } catch (e) {}
-        }, 30000);
-    }
-
-    private async checkReferral() {
-        if (this.balanceWaves > 100000) {
-            if (this.referral && this.referral.length > 0) {
-                $.getJSON("https://nodes.anote.digital/addresses/data/" + this.address + "?key=referral", function( data ) {
-                    if (data.length == 0) {
-                        const records = [{ key: 'referral', type: 'string', value: wallet.referral }]
-    
-                        wallet.signer
-                        .data({ data: records })
-                        .broadcast();
-                    } else {
-                        Cookies.remove("referral");
-                        wallet.referral = "";
-                    }
-                });
-            }
-        } else {
-            setInterval(async function(){
-                try {
-                    await wallet.checkReferral();
-                } catch (e) {}
-            }, 30000);
-        }
     }
 
     private accountExists():boolean {
@@ -983,16 +912,6 @@ $("#buttonCopy").on( "click", function() {
     $("#pMessage4").fadeIn(function(){
         setTimeout(function(){
             $("#pMessage4").fadeOut();
-        }, 500);
-    });
-});
-
-$("#buttonCopyReferral").on( "click", function() {
-    var link = $("#referralLink").val();
-    copy(String(link));
-    $("#pMessage13").fadeIn(function(){
-        setTimeout(function(){
-            $("#pMessage13").fadeOut();
         }, 500);
     });
 });
