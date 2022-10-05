@@ -27,3 +27,7 @@
 .rounded-pill {
     margin-top: 2px;
 }
+
+.list-group-item {
+    font-size: 0.9em;
+}
