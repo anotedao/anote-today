@@ -9,7 +9,7 @@
    <link rel="icon" type="image/png" href="./img/favicon.png" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-   <link rel="stylesheet" href="./custom.css">
+   <!-- <link rel="stylesheet" href="./custom.css"> -->
    <meta property="og:url" data-attr-t data-attr-t-interpolate content-t="{{html.url}}"/>
    <meta property="og:type"               content="article" />
    <meta property="og:title" data-attr-t data-attr-t-interpolate content-t="{{html.title}}"/>
@@ -158,8 +158,130 @@
 
         <!-- Screen Home -->
         <div id="screen-home">
-            Hello World
-        </div>
+         <div class="row">
+            <div class="alert alert-danger" role="alert" id="seedWarning" style="display: none;" data-t>home.seedWarning</div>
+            <ul class="nav nav-tabs mb-5 mt-4">
+               <li class="nav-item">
+                  <a class="nav-link active fw-bold" href="javascript:void(0)" id="tabButton1" data-t>home.tab1</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-bold" href="javascript:void(0)" id="tabButton2" data-t>home.tab2</a>
+                </li>
+            </ul>
+            <div id="tab1" style="padding: 0;">
+               <div class="bg-light p-md-5 p-3 border shadow-lg" style="color: #515151;">
+                  <div class="row">
+                     <div class="col-0 col-lg-3"></div>
+                     <div class="col-12 col-lg-6">
+                        <h4 class="py-2 text-start text-secondary border-bottom mb-3"><strong data-t>home.adTitle</strong></h4>
+                        <div class="mb-3">
+                           <label for="todayText" class="form-label"><strong>Ad Text</strong></label>
+                           <textarea class="form-control" id="todayText" rows="10" style="resize: none;"></textarea>
+                        </div>
+                        <div class="mb-3">
+                           <label for="todayLink" class="form-label"><strong>Ad Link</strong></label>
+                           <input type="text" class="form-control" id="todayLink" placeholder="https://anote.digital">
+                        </div>
+                        <div id="pMessage4" class="form-text text-success mt-3 mb-2" style="display: none;">Ad is successfully saved.</div>
+                        <div id="pMessage9" class="form-text text-danger mt-3 mb-2" style="display: none;"></div>
+                        <div class="d-grid mt-4">
+                           <button type="button" class="btn btn-success btn-lg btn-block" id="saveAdButton">
+                              <i class="bi bi-save"></i>&nbsp;&nbsp;Save Ad
+                           </button>
+                        </div>
+                     </div>
+                     <div class="col-0 col-lg-3"></div>
+                  </div>
+               </div>
+            </div>
+            <div id="tab2" style="display: none; padding: 0;">
+               <div class="bg-light p-md-5 p-3 border shadow-lg" style="color: #515151;">
+                  <h3 class="p-2 text-center text-secondary border-bottom"><strong data-t>home.aintTitle</strong></h3>
+                  <span class="display-1 px-2 fw-bold" id="balanceAint">0.00000000</span><span class="fs-3" data-t>home.aintCurrency</span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+              <!-- Screen Settings -->
+      <div id="screen-settings" style="display: none;">
+         <div class="row">
+            <div class="bg-light p-md-5 py-5 border shadow-lg" style="color: #515151;">
+               <div class="row">
+                  <div class="col-0 col-lg-3"></div>
+                  <div class="col-12 col-lg-6">
+                     <h5 class="border-bottom border-lite mb-3">Backup</h5>
+                     <form action="javascript:void(0)">
+                        <div class="mb-3">
+                           <label class="form-label fw-bold" data-t>settings.seedWords</label>
+                           <textarea class="form-control" rows="3" readonly id="seedWords2"></textarea>
+                           <div id="pMessage5" class="form-text text-success mt-3 mb-2" style="display: none;" data-t>settings.seedWordsCopied</div>
+                           <div id="pMessage8" class="form-text text-danger mt-3 mb-2" style="display: none;"></div>
+                        </div>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                           <i class="bi bi-lightbulb-fill"></i>&nbsp;&nbsp;<span data-t>settings.show</span>
+                        </button>
+                        <button class="btn btn-primary ms-3" disabled id="buttonSeedCopy">
+                           <i class="bi bi-files"></i>&nbsp;&nbsp;<span data-t>settings.copy</span>
+                        </button>
+                     </form>
+                  </div>
+                  <div class="col-0 col-lg-3"></div>
+               </div>
+               <div class="row mt-4">
+                  <div class="col-0 col-lg-3"></div>
+                  <div class="col-12 col-lg-6">
+                     <h5 class="border-bottom border-lite mb-3" data-t>settings.passwordChange</h5>
+                     <form action="javascript:void(0)">
+                        <div class="mb-3">
+                           <label class="form-label fw-bold" data-t>settings.newPassword</label>
+                           <input type="password" class="form-control" id="password6">
+                         </div>
+                        <div class="mb-3">
+                          <label class="form-label fw-bold" data-t>settings.repeatNewPassword</label>
+                          <input type="password" class="form-control" id="password7">
+                        </div>
+                        <div id="pMessage6" class="form-text text-danger mb-2" style="display: none;"></div>
+                        <div id="pMessage7" class="form-text text-success mb-2" style="display: none;"></div>
+                        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                           <i class="bi bi-lock-fill"></i>&nbsp;&nbsp;<span data-t>settings.changePassword</span>
+                        </button>
+                     </form>
+                  </div>
+                  <div class="col-0 col-lg-3"></div>
+               </div>
+               <div class="row mt-5">
+                  <div class="col-0 col-lg-3"></div>
+                  <div class="col-12 col-lg-6">
+                     <h5 class="border-bottom border-lite" data-t>settings.logoutTitle</h5>
+                     <div class="row">
+                        <div class="col-6">
+                           <button class="btn btn-danger btn-lg w-100 mt-3" id="buttonLogout">
+                              <i class="bi bi-power"></i>&nbsp;&nbsp;<span data-t>settings.logout</span>
+                           </button>
+                        </div>
+                        <div class="col-6">
+                           <button class="btn btn-outline-danger btn-lg w-100 mt-3" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                              <i class="bi bi-trash-fill"></i>&nbsp;&nbsp;<span data-t>settings.deleteAccount</span>
+                           </button>
+                        </div>
+                     </div>
+                     <div class="row p-0 mt-3">
+                        <div id="pMessage14" class="form-text text-danger text-start" style="display: none;"></div>
+                     </div>
+                  </div>
+                  <div class="col-0 col-lg-3"></div>
+               </div>
+            </div>
+         </div>
+         <div class="row py-4">
+            <div class="text-start px-0">
+               <button class="btn btn-secondary btn-lg" type="button" id="backFromSettings">
+                  <i class="bi bi-arrow-left-circle-fill"></i>
+               </button>
+            </div>
+         </div>
+      </div>
 
    </div>
 

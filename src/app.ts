@@ -24,10 +24,6 @@ class Wallet {
     balanceAnote:number;
     balanceAint:number;
 
-    earningsWaves:number;
-    earningsAhrk:number;
-    earningsAeur:number;
-
     selectedCurrency:string;
 
     constructor() { 
@@ -43,10 +39,6 @@ class Wallet {
         this.balanceAnote = 0;
         this.balanceAint = 0;
 
-        this.earningsWaves = 0;
-        this.earningsAhrk = 0;
-        this.earningsAeur = 0;
-
         this.selectedCurrency = ANOTE;
         this.captchaId = "";
     }
@@ -55,7 +47,6 @@ class Wallet {
         this.checkSeedWarning();
         if (this.isLoggedIn()) {
             this.populateData();
-            this.getEarningsScript();
             return "main";
         } else {
             if (this.accountExists()) {
@@ -117,84 +108,6 @@ class Wallet {
         $("#buttonTelegram").attr("href", "https://t.me/AnoteRobot?start=" + this.address);
     }
 
-    getEarningsScript() {
-        // var newScript = document.createElement("script");
-        // newScript.onload = function() {
-        //     wallet.earningsWaves = parseInt(String($("#earningsWaves").val()));
-        //     wallet.earningsAhrk = parseInt(String($("#earningsAhrk").val()));
-        //     wallet.earningsAeur = parseInt(String($("#earningsAeur").val()));
-    
-        //     $("#accumulatedEarningsAint").html(String((wallet.earningsWaves / AHRKDEC).toFixed(6)));
-
-        //     if (t.lang == "en") {
-        //         $("#accumulatedEarningsMain").html(String((wallet.earningsAeur / 100).toFixed(2)));
-        //     } else if (t.lang == "hr") {
-        //         $("#accumulatedEarningsMain").html(String((wallet.earningsAhrk / AHRKDEC).toFixed(6)));
-        //     }
-        // }
-        // newScript.async = false;
-        // var stamp = new Date().getTime();
-        // newScript.src = earningsScript + "/" + this.getAddress() + "/earnings.js?stamp=" + stamp;
-        // document.body.appendChild(newScript);
-    }
-
-    async collectEarnings(address:string) {
-        var amount = 0;
-        var assetId = "";
-        var fee = 0;
-
-        if (t.lang == "en") {
-            amount = 970000000;
-            assetId = ANOTE;
-            fee = 30000000;
-        } else if (t.lang == "hr") {
-            amount = 950000;
-            assetId = AHRK;
-            fee = 50000;
-        }
-
-        try {
-            await this.signer.transfer({
-                amount: amount,
-                recipient: address,
-                assetId: assetId,
-                feeAssetId: assetId,
-                fee: fee,
-                attachment: libs.crypto.base58Encode(libs.crypto.stringToBytes('collect'))
-            }).broadcast();
-            if (address == AINTADDRESS) {
-                $("#pMessage11").fadeOut(function() {
-                    $("#pMessage12").fadeIn(function(){
-                        setTimeout(function(){
-                            $("#pMessage12").fadeOut(function() {
-                                $("#pMessage11").fadeIn();
-                                $("#accumulatedEarningsAint").html("0.0000")
-                            });
-                        }, 2000);
-                    });
-                });
-            } else {
-                $("#pMessage9").fadeOut(function() {
-                    $("#pMessage10").fadeIn(function(){
-                        setTimeout(function(){
-                            $("#pMessage10").fadeOut(function() {
-                                $("#pMessage9").fadeIn();
-                                $("#accumulatedEarningsMain").html("0.000000")
-                            });
-                        }, 2000);
-                    });
-                });
-            }
-        } catch (error: any) {
-            if (error.error == 112) {
-                $("#pMessage9").html(t.collectEarnings.notEnough);
-            } else {
-                $("#pMessage9").html(t.error);
-                console.log(error);
-            }
-        }
-    }
-
     async login() {
         var p = $("#password1").val();
         if (p) {
@@ -209,7 +122,6 @@ class Wallet {
                     Cookies.set("sessionSeed", this.sessionSeed, { expires: d });
                     this.populateData();
                     this.showHomeAfterLogin();
-                    this.getEarningsScript();
                 } catch (e) {
                     $("#pMessage3").html(t.login.wrongPass);
                     $("#pMessage3").fadeIn();
@@ -274,40 +186,6 @@ class Wallet {
         $("#amount").val(String(balance.toFixed(decimalPlaces)));
     }
 
-    // updateFeeAmount() {
-    //     var currency = $("#sendCurrency").val();
-    //     var dp = this.getDecimalPlaces(String(currency));
-    //     var decimalPlaces = 0;
-    //     if (currency == AHRK) {
-    //         $("#feeAsset").html("AHRK");
-    //         decimalPlaces = 6;
-    //     } else if (currency == AEUR) {
-    //         $("#feeAsset").html("AEUR");
-    //         decimalPlaces = 2;
-    //     } else if (currency == "") {
-    //         $("#feeAsset").html("WAVES");
-    //         decimalPlaces = 8;
-    //     } else if (currency == AINT) {
-    //         if (t.lang == "hr") {
-    //             $("#feeAsset").html("AHRK");
-    //             decimalPlaces = 6;
-    //             dp = this.getDecimalPlaces(AHRK);
-    //         } else if (t.lang == "en") {
-    //             $("#feeAsset").html("AEUR");
-    //             decimalPlaces = 2;
-    //             dp = this.getDecimalPlaces(AEUR);
-    //         }
-    //     } else if (currency == ANOTE) {
-    //         $("#feeAsset").html("ANOTE");
-    //         decimalPlaces = 8;
-    //     }
-
-    //     var fee = this.getFee(String(currency));
-    //     var feeStr = fee / dp;
-
-    //     $("#feePrice").html(String(feeStr.toFixed(decimalPlaces)));
-    // }
-
     updateAmountExchange() {
         var currency = $("#fromCurrency").val();
 
@@ -339,40 +217,6 @@ class Wallet {
         }
 
         $("#amountExchange").val(String(balance.toFixed(decimalPlaces)));
-    }
-
-    updateFeeAmountExchange() {
-        var currency = $("#fromCurrency").val();
-        var dp = this.getDecimalPlaces(String(currency));
-        var decimalPlaces = 0;
-        if (currency == AHRK) {
-            $("#feeAssetExchange").html("AHRK");
-            decimalPlaces = 6;
-        } else if (currency == AEUR) {
-            $("#feeAssetExchange").html("AEUR");
-            decimalPlaces = 2;
-        } else if (currency == "") {
-            $("#feeAssetExchange").html("WAVES");
-            decimalPlaces = 8;
-        } else if (currency == AINT) {
-            if (t.lang == "hr") {
-                $("#feeAssetExchange").html("AHRK");
-                decimalPlaces = 6;
-                dp = this.getDecimalPlaces(AHRK);
-            } else if (t.lang == "en") {
-                $("#feeAssetExchange").html("AEUR");
-                decimalPlaces = 2;
-                dp = this.getDecimalPlaces(AEUR);
-            }
-        } else if (currency == ANOTE) {
-            $("#feeAssetExchange").html("ANOTE");
-            decimalPlaces = 8;
-        }
-
-        var fee = this.getFee(String(currency));
-        var feeStr = fee / dp;
-
-        $("#feePriceExchange").html(String(feeStr.toFixed(decimalPlaces)));
     }
 
     async changePassword() {
@@ -513,145 +357,67 @@ class Wallet {
                 }, 2000);
             });
         }
-
-        // const data = {
-        //     leaseId: '6pcjhkUPiEqb1zTxMcEopg2g6JtavwyJrg5UgToNZrSk',
-        //   }
-          
-        //   const [tx] = await this.signer
-        //     .cancelLease(data)
-        //     .broadcast();
-
-        // const records = [{ key: 'fee', type: 'integer', value: 950 }]
-
-        // const [tx] = await this.signer
-        // .data({ data: records })
-        // .broadcast();
-
-        // const data = {
-        //     name: 'AINT',
-        //     decimals: 8,
-        //     quantity: 14400000000000,
-        //     reissuable: false,
-        //     description: 'Anonymous Infrastructure Token',
-        //   }
-          
-        //   const [tx] = await this.signer
-        //     .issue(data)
-        //     .broadcast();
-
-        // const data = {
-        //     assetId: '2299MC1V4ErNtHCcZjdjCNGZWAQ6rZVPpRMmZuoXQ5cp',
-        //     quantity: 100000000000,
-        //     }
-            
-        //     const [tx] = await this.signer
-        //     .burn(data)
-        //     .broadcast();
-
-        // const data = {
-        //     script: null,
-        //     fee: 10000000 
-        //   }
-          
-        //   const [tx] = await this.signer
-        //     .setScript(data)
-        //     .broadcast();
-
-        // const [tx] = await this.signer.invoke({
-        //     dApp: "3A9Rb3t91eHg1ypsmBiRth4Ld9ZytGwZe9p",
-        //     call: { function: "call" },
-        //     fee: 100500000
-        //  }).broadcast();
-
-        // const data = {
-        //     assetId: 'wEWa7ufhN2vLcmMTV4xc9rWAcFwruFusMnQs5VE1S75',
-        //     quantity: 1,
-        //   }
-          
-        //   const [tx] = await this.signer
-        //     .burn(data)
-        //     .broadcast();
-
-        // const data = {
-        //     name: 'ANOTE',
-        //     decimals: 8,
-        //     quantity: 525600000000000,
-        //     reissuable: true,
-        //     description: 'Anonymous Cryptocurrency',
-        //   }
-          
-        //   const [tx] = await this.signer
-        //     .issue(data)
-        //     .broadcast();
     }
 
-    async exchange() {
-        var from = $("#fromCurrency").val();
-        var to = $("#toCurrency").val();
-        var decimalPlaces = this.getDecimalPlaces(String(from));
-        var fee = this.getFee(String(from));
-        var feeCurrency = from;
+    async saveAd() {
+        var adText = $("#todayText").val();
+        var adLink = $("#todayLink").val();
 
-        if (from == to) {
-            $("#exchangeError").html(t.exchange.currenciesSame);
-            $("#exchangeError").fadeIn(function(){
+        if (adText?.toString().length == 0 || adLink?.toString().length == 0) {
+            $("#pMessage9").html(t.send.bothRequired);
+            $("#pMessage9").fadeIn(function(){
                 setTimeout(function(){
-                    $("#exchangeError").fadeOut();
+                    $("#pMessage9").fadeOut();
                 }, 2000);
             });
+            navigator.vibrate(500);
         } else {
-            if (to == AINT) {
-                var recipient = "3PBmmxKhFcDhb8PrDdCdvw2iGMPnp7VuwPy";
-            } else {
-                var recipient = "3PPc3AP75DzoL8neS4e53tZ7ybUAVxk2jAb";
-            }
+            try {
+                const records = [{ key: '%s__anoteTodayAd', type: 'string', value: "%s%s__" + adText + "__" + adLink }]
 
-            var a = $("#amountExchange").val();
-            if (a) {
-                try {
-                    var amount: number = +a;
-                    await this.signer.transfer({
-                        amount: Math.floor(amount * decimalPlaces),
-                        recipient: recipient,
-                        assetId: from,
-                        feeAssetId: feeCurrency,
-                        fee: fee
-                    }).broadcast();
-                    $("#exchangeSuccess").fadeIn(function(){
-                        setTimeout(function(){
-                            $("#exchangeSuccess").fadeOut();
-                            $("#amount").val("");
-                            $("#addressRec").val("");
-                        }, 2000);
-                    });
-                } catch (e: any) {
-                    if (e.error == 112) {
-                        $("#exchangeError").html(t.send.notEnough);
-                        $("#exchangeError").fadeIn(function(){
-                            setTimeout(function(){
-                                $("#exchangeError").fadeOut();
-                            }, 2000);
-                        });
-                    } else {
-                        $("#exchangeError").html(t.error);
-                        $("#exchangeError").fadeIn(function(){
-                            setTimeout(function(){
-                                $("#exchangeError").fadeOut();
-                            }, 2000);
-                        });
-                        console.log(e.message)
-                    }
-                }
-            } else {
-                $("#exchangeError").html(t.exchange.amountRequired);
-                $("#exchangeError").fadeIn(function(){
+                const [tx] = await this.signer
+                .data({ data: records })
+                .broadcast();
+
+                $("#pMessage4").fadeIn(function(){
                     setTimeout(function(){
-                        $("#exchangeError").fadeOut();
+                        $("#pMessage4").fadeOut();
+                    }, 500);
+                });
+            } catch (e: any) {
+                $("#pMessage9").html(t.error);
+                $("#pMessage9").fadeIn(function(){
+                    setTimeout(function(){
+                        $("#pMessage9").fadeOut();
                     }, 2000);
                 });
+                console.log(e.message)
+                navigator.vibrate(500);
             }
         }
+    }
+
+    populateAd() {
+        $.getJSON("https://nodes.anote.digital/addresses/data/" + this.address + "?key=%25s__anoteTodayAd", function( data ) {
+            if (data.length > 0) {
+                var adData = data[0].value?.toString().split("__");
+
+                $("#todayText").val(adData[1]);
+                $("#todayLink").val(adData[2]);
+            }
+        });
+    }
+
+    async bid() {
+        // const [tx] = await this.signer.invoke({
+        //     dApp: "3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW",
+        //     call: { function: "bid", args: [] },
+        //     fee: 500000,
+        //     payment: [{
+        //         assetId: 'WAVES',
+        //         amount: 500000,
+        //     }],
+        //  }).broadcast();
     }
 
     async register() { 
@@ -663,7 +429,6 @@ class Wallet {
             this.setCookies();
             this.populateData();
             this.showHomeAfterRegister();
-            this.getEarningsScript();
         }
     }
 
@@ -677,7 +442,6 @@ class Wallet {
                 this.setCookies();
                 this.populateData();
                 this.showHomeAfterRegister();
-                this.getEarningsScript();
             } else {
                 $("#pMessage2").html(t.import.seedRequired);
                 $("#pMessage2").fadeIn();
@@ -820,6 +584,8 @@ class Wallet {
 
         await wallet.checkReferral();
 
+        await wallet.populateAd();
+
         setInterval(async function(){
             try {
                 await wallet.initMiningSection();
@@ -960,7 +726,6 @@ const AHRKADDRESS = "3PPc3AP75DzoL8neS4e53tZ7ybUAVxk2jAb";
 const AINTADDRESS = "3PBmmxKhFcDhb8PrDdCdvw2iGMPnp7VuwPy"
 
 var activeScreen = "home";
-var earningsScript = "https://aint.kriptokuna.com";
 // var mobileNodeUrl = "http://localhost:5001";
 var mobileNodeUrl = "https://mobile.anote.digital";
 var t;
@@ -1131,10 +896,6 @@ $("#buttonSend").on( "click", function() {
     wallet.send();
 });
 
-$("#buttonExchange").on( "click", function() {
-    wallet.exchange();
-});
-
 $("#buttonShowSeed").on( "click", function() {
     wallet.showSeed();
 });
@@ -1143,8 +904,8 @@ $("#buttonChangePass").on( "click", function() {
     wallet.changePassword();
 });
 
-$("#buttonCollect").on( "click", function() {
-    wallet.collectEarnings(AHRKADDRESS);
+$("#saveAdButton").on( "click", function() {
+    wallet.saveAd();
 });
 
 // $("#sendCurrency").on( "change", function() {
@@ -1154,11 +915,6 @@ $("#buttonCollect").on( "click", function() {
 
 $("#fromCurrency").on( "change", function() {
     wallet.updateAmountExchange();
-    wallet.updateFeeAmountExchange();
-});
-
-$("#buttonCollectEarnings").on( "click", function() {
-    // wallet.collectEarnings(AINTADDRESS);
 });
 
 $("#buttonCopy").on( "click", function() {

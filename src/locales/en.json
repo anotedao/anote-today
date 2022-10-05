@@ -1,8 +1,8 @@
 {
   "lang": "en",
   "html": {
-    "title": "Anote Wallet",
-    "description": "Anote crypto currency can be mined, sent, received, exchanged or sold and used right from the start to purchase ads on our Telegram ad channel - AnonShout.",
+    "title": "Anote Today",
+    "description": "Anote Today | Anote crypto currency can be mined, sent, received, exchanged or sold and used right from the start to purchase ads on our Telegram ad channel - AnonShout.",
     "url": "https://anote.digital",
     "logoUrl": "./img/logo.png",
     "fbImg": "https://www.anonutopia.com/static/img/fb.png?v=1.0.0"
@@ -25,11 +25,8 @@
   },
   "home": {
     "seedWarning": "Save your seed words for backup purposes. You can find them in settings. <strong><u>You are responsible for your account.</u></strong>",
-    "tab1": "AnonEuro",
-    "tab2": "Mining",
-    "tab3": "ANOTE",
-    "tab4": "AINT",
-    "tab5": "Exchange",
+    "tab1": "YOUR AD",
+    "tab2": "AUCTIONS",
     "balance": "Balance",
     "earnings": "Accumulated earnings",
     "currency": "AEUR",
@@ -40,7 +37,7 @@
     "aintCurrency": "AINTs",
     "aintEarnings": "Accumulated AINT earnings",
     "aintCollectEarnings": "Withdraw",
-    "balanceWaves": "Anote Balance",
+    "adTitle": "Edit Your Ad",
     "balanceAINTs": "AINT Balance",
     "mineMessage": "Anote can be mined in a simple way using Telegram messenger. You can read more about mining <a href=\"https://www.anonutopia.com/beginner\" target=\"_blank\">here</a>."
   },
