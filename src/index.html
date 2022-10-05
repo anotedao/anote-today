@@ -159,7 +159,28 @@
         <!-- Screen Home -->
         <div id="screen-home">
          <div class="row">
-            <div class="alert alert-danger" role="alert" id="seedWarning" style="display: none;" data-t>home.seedWarning</div>
+            <div class="alert alert-danger mb-4" role="alert" id="seedWarning" style="display: none;" data-t>home.seedWarning</div>
+            <div class="row mb-2 px-0 mx-0">
+               <div class="col-lg-6 p-0 mb-2" style="font-size: 1.2em;">
+                  <strong class="p-0">Balance:</strong> <span class="p-0" id="balanceWaves">0.000</span> ANOTES
+               </div>
+               <div class="col-lg-2 p-0"></div>
+               <div class="col-lg-4 p-0">
+                  <div class="input-group input-group-sm">
+                     <input type="text" class="form-control" readonly value="" id="address">
+                     <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="buttonCopy">
+                           <i class="bi bi-files"></i>
+                        </button>
+                     </div>
+                     <div class="input-group-append ms-2">
+                        <button class="btn btn-danger" type="button" id="send">
+                           <i class="bi bi-arrow-up-right-circle-fill"></i>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
             <ul class="nav nav-tabs mb-5 mt-4">
                <li class="nav-item">
                   <a class="nav-link active fw-bold" href="javascript:void(0)" id="tabButton1" data-t>home.tab1</a>
@@ -223,6 +244,66 @@
                      <div class="col-0 col-lg-3"></div>
                   </div>
                </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Screen Send -->
+      <div id="screen-send" style="display: none;">
+         <div class="row">
+            <div class="bg-light p-md-5 py-5 border shadow-lg" style="color: #515151;">
+               <div class="row">
+                  <div class="col-0 col-lg-3"></div>
+                  <div class="col-12 col-lg-6">
+                     <div class="alert alert-danger" role="alert" data-t>send.feeMessage</div>
+                     <form action="javascript:void(0)">
+                        <!-- <div class="mb-4 mt-4">
+                           <label class="form-label fw-bold" data-t>send.currency</label>
+                           <div class="dropdown d-grid">
+                              <button class="btn btn-block btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="text-align: left; font-size: 1rem; padding: 0.75rem 1rem;">
+                                ANOTE
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="javascript: void null;" id="anoteButton">ANOTE</a></li>
+                                <li><a class="dropdown-item" href="javascript: void null;" id="aintButton">AINT</a></li>
+                              </ul>
+                            </div>
+                        </div> -->
+                        <div class="mb-4">
+                           <label class="form-label fw-bold" data-t>receive.account</label>
+                           <div class="input-group mb-3 input-group-lg">
+                              <input type="text" class="form-control" data-attr-t data-attr-t-interpolate placeholder-t="{{send.address}}" aria-label-t="{{send.address}}" id="addressRec" style="font-size: 1rem;">
+                              <div class="input-group-append">
+                                 <button class="btn btn-primary btn-lg" type="button" id="qrButton">
+                                    <i class="bi bi-upc-scan"></i>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="mb-4">
+                           <label class="form-label fw-bold" data-t>send.amount</label>
+                           <div class="input-group input-group-lg">
+                              <input type="text" class="form-control" data-attr-t data-attr-t-interpolate placeholder-t="{{send.amount2}}" aria-label-t="{{send.amount2}}" id="amount" style="font-size: 1rem; line-height: 2;">
+                           </div>
+                        </div>
+                        <div id="sendError" class="form-text text-danger" style="display: none;"></div>
+                        <div id="sendSuccess" class="form-text text-success mt-3 mb-2" style="display: none;" data-t>send.sendMessage</div>
+                        <div class="d-grid mt-4">
+                           <button class="btn btn-danger btn-block btn-lg" id="buttonSend">
+                              <i class="bi bi-arrow-up-right-circle-fill"></i>&nbsp;&nbsp;<span data-t>send.sendButton</span>
+                           </button>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="col-0 col-lg-3"></div>
+               </div>
+            </div>
+         </div>
+         <div class="row py-4">
+            <div class="text-start px-0">
+               <button class="btn btn-secondary btn-lg" type="button" id="backFromSend">
+                  <i class="bi bi-arrow-left-circle-fill"></i>
+               </button>
             </div>
          </div>
       </div>
