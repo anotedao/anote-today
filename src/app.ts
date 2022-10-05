@@ -909,9 +909,9 @@ $("#fromCurrency").on( "change", function() {
 $("#buttonCopy").on( "click", function() {
     var address = $("#address").val();
     copy(String(address));
-    $("#pMessage4").fadeIn(function(){
+    $("#pMessage12").fadeIn(function(){
         setTimeout(function(){
-            $("#pMessage4").fadeOut();
+            $("#pMessage12").fadeOut();
         }, 500);
     });
 });
