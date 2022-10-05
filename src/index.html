@@ -169,14 +169,14 @@
                 </li>
             </ul>
             <div id="tab1" style="padding: 0;">
-               <div class="bg-light p-md-5 p-3 border shadow-lg" style="color: #515151;">
+               <div class="bg-light p-md-5 p-3 border shadow-lg mb-5" style="color: #515151;">
                   <div class="row">
-                     <div class="col-0 col-lg-3"></div>
-                     <div class="col-12 col-lg-6">
-                        <h4 class="py-2 text-start text-secondary border-bottom mb-3"><strong data-t>home.adTitle</strong></h4>
+                     <div class="col-0 col-lg-2"></div>
+                     <div class="col-12 col-lg-8">
+                        <h5 class="py-2 text-start text-secondary border-bottom mb-3"><strong data-t>home.adTitle</strong></h5>
                         <div class="mb-3">
                            <label for="todayText" class="form-label"><strong>Ad Text</strong></label>
-                           <textarea class="form-control" id="todayText" rows="10" style="resize: none;"></textarea>
+                           <textarea class="form-control" id="todayText" rows="12" style="resize: none;"></textarea>
                         </div>
                         <div class="mb-3">
                            <label for="todayLink" class="form-label"><strong>Ad Link</strong></label>
@@ -190,14 +190,36 @@
                            </button>
                         </div>
                      </div>
-                     <div class="col-0 col-lg-3"></div>
+                     <div class="col-0 col-lg-2"></div>
                   </div>
                </div>
             </div>
             <div id="tab2" style="display: none; padding: 0;">
-               <div class="bg-light p-md-5 p-3 border shadow-lg" style="color: #515151;">
-                  <h3 class="p-2 text-center text-secondary border-bottom"><strong data-t>home.aintTitle</strong></h3>
-                  <span class="display-1 px-2 fw-bold" id="balanceAint">0.00000000</span><span class="fs-3" data-t>home.aintCurrency</span>
+               <div class="bg-light p-md-5 p-3 border shadow-lg mb-5" style="color: #515151;">
+                  <div class="row">
+                     <div class="col-0 col-lg-3"></div>
+                     <div class="col-12 col-lg-6">
+                        <h5 class="py-2 text-start text-secondary border-bottom mb-3"><strong data-t>home.auctionsTitle</strong></h5>
+                        <div class="mb-3">
+                           <label for="bidAmount" class="form-label"><strong>Your Bid</strong></label>
+                           <input type="text" class="form-control" id="bidAmount" placeholder="">
+                        </div>
+                        <div id="pMessage4" class="form-text text-success mt-3 mb-2" style="display: none;">Ad is successfully saved.</div>
+                        <div id="pMessage9" class="form-text text-danger mt-3 mb-2" style="display: none;"></div>
+                        <div class="d-grid mt-4">
+                           <button type="button" class="btn btn-success btn-lg btn-block" id="bidButton">
+                              <i class="bi bi-credit-card-fill"></i>&nbsp;&nbsp;Bid For Ad
+                           </button>
+                        </div>
+                        <div class="mt-3">
+                           <label class="form-label mb-3"><strong>Existing Bids</strong></label>
+                           <ol class="list-group list-group-numbered" id="bidList">
+                              
+                            </ol>
+                        </div>
+                     </div>
+                     <div class="col-0 col-lg-3"></div>
+                  </div>
                </div>
             </div>
          </div>
@@ -280,6 +302,75 @@
                   <i class="bi bi-arrow-left-circle-fill"></i>
                </button>
             </div>
+         </div>
+      </div>
+
+      <!-- Modal Password Show Seed -->
+      <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="passwordModalLabel" data-t>modals.title1</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" data-attr-t data-attr-t-interpolate aria-label-t="{{modals.cancel}}"></button>
+            </div>
+            <div class="modal-body pt-1">
+               <input type="password" class="form-control" id="password8">
+            </div>
+            <div class="modal-footer justify-content-between">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  <i class="bi bi-x-circle-fill"></i>&nbsp;&nbsp;<span data-t>modals.cancel</span>
+               </button>
+               <button type="button" class="btn btn-danger" id="buttonShowSeed" data-bs-dismiss="modal">
+                  <i class="bi bi-arrow-right-circle-fill"></i>&nbsp;&nbsp;<span data-t>modals.continue</span>
+               </button>
+            </div>
+         </div>
+         </div>
+      </div>
+
+      <!-- Modal Password Change Password -->
+      <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="passwordModalLabel" data-t>modals.title2</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" data-attr-t data-attr-t-interpolate aria-label-t="{{modals.cancel}}"></button>
+            </div>
+            <div class="modal-body pt-1">
+               <input type="password" class="form-control" id="password9">
+            </div>
+            <div class="modal-footer justify-content-between">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  <i class="bi bi-x-circle-fill"></i>&nbsp;&nbsp;<span data-t>modals.cancel</span>
+               </button>
+               <button type="button" class="btn btn-danger" id="buttonChangePass" data-bs-dismiss="modal">
+                  <i class="bi bi-arrow-right-circle-fill"></i>&nbsp;&nbsp;<span data-t>modals.continue</span>
+               </button>
+            </div>
+         </div>
+         </div>
+      </div>
+
+      <!-- Modal Delete Account -->
+      <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="passwordModalLabel" data-t>modals.title1</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" data-attr-t data-attr-t-interpolate aria-label-t="{{modals.cancel}}"></button>
+            </div>
+            <div class="modal-body pt-1">
+               <input type="password" class="form-control" id="password10">
+            </div>
+            <div class="modal-footer justify-content-between">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  <i class="bi bi-x-circle-fill"></i>&nbsp;&nbsp;<span data-t>modals.cancel</span>
+               </button>
+               <button type="button" class="btn btn-danger" id="buttonDeleteAccount" data-bs-dismiss="modal">
+                  <i class="bi bi-arrow-right-circle-fill"></i>&nbsp;&nbsp;<span data-t>modals.continue</span>
+               </button>
+            </div>
+         </div>
          </div>
       </div>
 

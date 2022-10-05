@@ -408,6 +408,25 @@ class Wallet {
         });
     }
 
+    populateBids() {
+        $.getJSON("https://nodes.anote.digital/addresses/data/3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW", function( data ) {
+            if (data.length == 0) {
+                var el = '<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto">No Bids Today</div></li>';
+                $("#bidList").html(el);
+            } else {
+                data = data.sort(function(a, b) {
+                    return parseFloat(a.value) - parseFloat(b.value);
+                });
+                data.forEach(element => {
+                    var anotes = element.value / 100000000;
+                    var address = element.key.split("__")[1];
+                    var el = '<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto">' + address + '</div><span class="badge bg-primary rounded-pill">' + anotes + '</span></li>';
+                    $("#bidList").html($("#bidList").html() + el);
+                })
+            }
+        });
+    }
+
     async bid() {
         // const [tx] = await this.signer.invoke({
         //     dApp: "3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW",
@@ -585,6 +604,8 @@ class Wallet {
         await wallet.checkReferral();
 
         await wallet.populateAd();
+
+        await wallet.populateBids();
 
         setInterval(async function(){
             try {

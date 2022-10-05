@@ -25,8 +25,8 @@
   },
   "home": {
     "seedWarning": "Save your seed words for backup purposes. You can find them in settings. <strong><u>You are responsible for your account.</u></strong>",
-    "tab1": "YOUR AD",
-    "tab2": "AUCTIONS",
+    "tab1": "Your Ad",
+    "tab2": "Auctions",
     "balance": "Balance",
     "earnings": "Accumulated earnings",
     "currency": "AEUR",
@@ -38,6 +38,7 @@
     "aintEarnings": "Accumulated AINT earnings",
     "aintCollectEarnings": "Withdraw",
     "adTitle": "Edit Your Ad",
+    "auctionsTitle": "Anote Today Ad Auction",
     "balanceAINTs": "AINT Balance",
     "mineMessage": "Anote can be mined in a simple way using Telegram messenger. You can read more about mining <a href=\"https://www.anonutopia.com/beginner\" target=\"_blank\">here</a>."
   },

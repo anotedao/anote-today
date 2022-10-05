@@ -23,3 +23,7 @@
 .captcha-img {
     /* border: 1px solid darkslategrey; */
 }
+
+.rounded-pill {
+    margin-top: 2px;
+}
