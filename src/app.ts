@@ -363,7 +363,7 @@ class Wallet {
     }
 
     populateAd() {
-        $.getJSON("https://nodes.anote.digital/addresses/data/" + this.address + "?key=%25s__anoteTodayAd", function( data ) {
+        $.getJSON("https://node.anote.digital/addresses/data/" + this.address + "?key=%25s__anoteTodayAd", function( data ) {
             if (data.length > 0) {
                 var adData = data[0].value?.toString().split("__");
 
@@ -375,7 +375,7 @@ class Wallet {
 
     populateBids() {
         $("#bidList").html("");
-        $.getJSON("https://nodes.anote.digital/addresses/data/3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW", function( data ) {
+        $.getJSON("https://node.anote.digital/addresses/data/3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW", function( data ) {
             if (data.length == 0) {
                 var el = '<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto">No Bids Today</div></li>';
                 $("#bidList").html(el);
@@ -544,11 +544,11 @@ class Wallet {
 
     private async initWaves(seed) {
         this.signer = new Signer({
-            NODE_URL: 'https://nodes.anote.digital',
+            NODE_URL: 'https://node.anote.digital',
           });
         this.provider = new ProviderSeed(seed);
         this.provider.connect({
-            NODE_URL: 'https://nodes.anote.digital',
+            NODE_URL: 'https://node.anote.digital',
             NETWORK_BYTE: 55,
         });
         this.signer.setProvider(this.provider);
@@ -650,11 +650,11 @@ class Wallet {
             try {
                 var seed = libs.crypto.decryptSeed(this.seed, String(password));
                 var signer = new Signer({
-                    NODE_URL: 'https://nodes.anote.digital',
+                    NODE_URL: 'https://node.anote.digital',
                   });
                 var provider = new ProviderSeed(seed);
                 provider.connect({
-                    NODE_URL: 'https://nodes.anote.digital',
+                    NODE_URL: 'https://node.anote.digital',
                     NETWORK_BYTE: 55,
                 });
                 signer.setProvider(provider);
