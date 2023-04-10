@@ -376,7 +376,7 @@ class Wallet {
     populateBids() {
         $("#bidList").html("");
         $.getJSON("https://node.anote.digital/addresses/data/3ANmnLHt8mR9c36mdfQVpBtxUs8z1mMAHQW", function( data ) {
-            if (data.length == 0) {
+            if (data.length <= 1) {
                 var el = '<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto">No Bids Today</div></li>';
                 $("#bidList").html(el);
             } else {
