@@ -8,7 +8,7 @@
         "tsc:w": "tsc -w",
         "start": "static-i18n -l en -i hr -i en ./src/ && cp src/custom.css i18n/ && cp src/app.ts i18n/ && cp src/img/* i18n/img/ && cp -R src/locales/ dist/ && concurrently \"npm run tsc:w\" \"parcel ./i18n/index.html\" ",
         "predeploy": "rm -rf dist && cp -R src dist && static-i18n -l en -i en -o ./dist ./src/ && parcel build ./dist/index.html --public-url ./ && cp CNAME dist/ && cp -R src/locales/ dist/",
-        "deploy": "gh-pages -b master -d dist -r git@github.com:anoncms/anote.today.git"
+        "deploy": "gh-pages -b main -d dist -r git@github.com:anoncms/ads.anotedao.com.git"
     },
     "keywords": [],
     "author": "",
@@ -18,14 +18,14 @@
         "@waves/signer": "1.0.11",
         "@waves/ts-types": "1.1.0",
         "@waves/waves-transactions": "4.2.10",
+        "copy-to-clipboard": "^3.3.1",
         "jquery": "^3.6.0",
+        "js-cookie": "^3.0.1",
         "parcel": "^2.8.2",
         "qr-code-scanner": "^1.0.8",
-        "static-i18n": "^0.2.10",
-        "wallet": "^0.1.220004",
-        "js-cookie": "^3.0.1",
-        "copy-to-clipboard": "^3.3.1",
-        "qrcode": "^1.4.4"
+        "qrcode": "^1.4.4",
+        "static-i18n": "^0.2.1",
+        "wallet": "^0.1.1"
     },
     "devDependencies": {
         "@parcel/packager-raw-url": "^2.8.2",
@@ -34,7 +34,8 @@
         "@types/js-cookie": "^2.2.6",
         "buffer": "^5.7.1",
         "concurrently": "^6.0.0",
-        "cssnano": "^4.1.10",
+        "cssnano": "^6.0.1",
+        "gh-pages": "^6.0.0",
         "lite-server": "^2.6.1",
         "process": "^0.11.10",
         "regenerator-runtime": "^0.13.7",
