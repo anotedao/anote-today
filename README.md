@@ -1,2 +1,2 @@
 # anote-today
-Anote.Today Ads Tool
+Anote Ads Tool
